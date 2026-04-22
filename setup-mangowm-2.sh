@@ -221,32 +221,7 @@ ok "zsh + zinit + starship configured, set as default shell"
 # =============================================================================
 
 section "MangoWM"
-sudo pacman -S --needed --noconfirm \
-    wayland wayland-protocols wlroots libinput pixman \
-    xcb-util-renderutil xcb-util-wm xorg-xwayland \
-    meson ninja pkg-config gcc make git
-
-mkdir -p "$USER_HOME/src"
-cd "$USER_HOME/src"
-
-if [ -d "mangowm" ]; then
-    cd mangowm && git pull
-else
-    git clone https://github.com/mangowm/mangowm
-    cd mangowm
-fi
-
-if [ -f "meson.build" ]; then
-    meson setup build --wipe
-    ninja -C build
-    sudo ninja -C build install
-elif [ -f "Makefile" ]; then
-    make && sudo make install
-else
-    error "Unknown MangoWM build system — check repo manually"
-fi
-
-ok "MangoWM built and installed"
+ok "MangoWM already installed via paru, skipping build"
 cd "$USER_HOME"
 
 # =============================================================================
